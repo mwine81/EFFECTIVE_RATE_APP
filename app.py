@@ -1,7 +1,7 @@
 import polars as pl
 from polars import col as c
 import streamlit as st
-
+from scaler import add_grouping, agg_grouping
 
 
 brand_scaler = pl.scan_parquet(r'data\brand_scaler.parquet')

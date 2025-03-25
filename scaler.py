@@ -49,6 +49,6 @@ def create_source_data(is_brand: int, base):
     )
 
 if __name__ == '__main__':
-
+    pass
     # create_source_data(is_brand=0).collect().write_parquet(r'data/generic_scaler.parquet')
     # create_source_data(is_brand=1).collect().write_parquet(r'data/brand_scaler.parquet')

@@ -1,29 +1,8 @@
-
 import polars as pl
 from polars import col as c
 import streamlit as st
 
-def grp_scaler(data,sample_size):
-    end = data.select(pl.len()).collect().item()
-    grp_frame = (pl.DataFrame({'index':pl.linear_spaces(1,end,sample_size,closed='left',eager=True)}).explode('index').with_columns(c.index.floor().cast(pl.UInt32)).with_row_index('grp',offset=1)).lazy()
-    return grp_frame
 
-def add_grouping(data, grp_size):
-    grp_frame = grp_scaler(data,grp_size)
-    return (
-        data
-        .join(grp_frame,on='index',how='left')
-        .sort(by='index')
-        .with_columns(c.grp.forward_fill())
-     )
-
-def agg_grouping(data):
-    return(
-        data
-        .group_by(c.grp)
-        .agg(c.awp.mean(),c.nadac.mean())
-        .rename({'grp': 'index'})
-    )
 
 brand_scaler = pl.scan_parquet(r'data\brand_scaler.parquet')
 generic_scaler = pl.scan_parquet(r'data\generic_scaler.parquet')

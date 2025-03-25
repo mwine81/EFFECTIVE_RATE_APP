@@ -2,10 +2,10 @@ import polars as pl
 from polars import col as c
 import streamlit as st
 from scaler import add_grouping, agg_grouping
+from pathlib import Path
 
-
-brand_scaler = pl.scan_parquet(r'data\brand_scaler.parquet')
-generic_scaler = pl.scan_parquet(r'data\generic_scaler.parquet')
+brand_scaler = pl.scan_parquet('brand_scaler.parquet')
+generic_scaler = pl.scan_parquet('generic_scaler.parquet')
 
 col1,col2 = st.columns(2)
 with col1:

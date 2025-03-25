@@ -1,7 +1,7 @@
 
 import polars as pl
 from polars import col as c
-from scaler import *
+#from scaler import *
 import streamlit as st
 
 def grp_scaler(data,sample_size):
